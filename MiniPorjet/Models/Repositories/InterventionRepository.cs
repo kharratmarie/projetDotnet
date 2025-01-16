@@ -31,14 +31,12 @@ namespace MiniPorjet.Models.Repositories
                 throw new ArgumentException("L'intervention spécifiée est introuvable.");
             }
 
-            // Vérifier si l'intervention est gratuite
-            if (IsInterventionFree(intervention.Reclamation))
-            {
-                return 0; // Gratuit si sous garantie
-            }
 
+            var r = context.Reclamations.Find(intervention.ReclamationId);
+
+            var piece = context.Pieces.Find(r.PieceId); 
             // Si hors garantie, calculer le coût
-            decimal pieceCost = intervention.Reclamation.Piece?.PiecePrix ?? 0; // Gérer le cas où la pièce est null
+            decimal pieceCost = piece.PiecePrix; // Gérer le cas où la pièce est null
             decimal cost = pieceCost + tarifMainOeuvre;
 
             // Appliquer la TVA

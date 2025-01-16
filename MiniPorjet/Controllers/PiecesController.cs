@@ -170,6 +170,8 @@ try            {
         {
             return _context.Pieces.Any(e => e.PieceId == id);
         }
+        [AllowAnonymous]
+
         [HttpGet]
         public ActionResult Search(int? articleId)
         {

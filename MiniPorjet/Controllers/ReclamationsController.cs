@@ -235,6 +235,7 @@ namespace MiniPorjet.Controllers
 
             return Json(pieces);
         }
+        [AllowAnonymous]
 
         [HttpGet]
         public ActionResult Search(int? articleId)

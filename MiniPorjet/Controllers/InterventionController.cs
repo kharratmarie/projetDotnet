@@ -139,19 +139,43 @@ namespace MiniPorjet.Controllers
         // POST: Intervention/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InterventionId,InterventionDate,ReclamationId,MontantFacture")] Intervention intervention)
+        public async Task<IActionResult> Edit(int id, [Bind("InterventionId,InterventionDate,ReclamationId,Statut , Description")] Intervention intervention)
         {
             if (id != intervention.InterventionId)
             {
+                
+
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+           
                 try
                 {
+
+                    intervention.Statut = "terminé";
+                    intervention.Description = "sdfjklm";
+
+                    
                     _context.Update(intervention);
                     await _context.SaveChangesAsync();
+
+                    if (intervention.Statut == "terminé")
+                {
+                    var reclamation = await _context.Reclamations
+                   .Include(r => r.Article)
+                   .Include(r => r.Client)
+                   .Include(r => r.Piece)
+                   .FirstOrDefaultAsync(r => r.ReclamationId == intervention.ReclamationId);
+                    if (reclamation != null)
+                    {
+                        // Update the reclamation's status
+                        reclamation.ReclamationStatut = "Résolu";
+                        _context.Update(reclamation); // Pass the single entity
+                        await _context.SaveChangesAsync();
+                    }
+                }
+
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -165,10 +189,8 @@ namespace MiniPorjet.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+           
 
-            ViewData["ReclamationId"] = new SelectList(_context.Reclamations, "ReclamationId", "ReclamationDescription", intervention.ReclamationId);
-            return View(intervention);
         }
         // GET: Intervention/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -1,44 +1,48 @@
 ﻿@model MiniPorjet.ViewModels.LoginViewModel
 @{
     ViewBag.Title = "User Login";
-}
-<h1>User Login</h1>
-@{
     var returnUrl = Context.Request.Query["ReturnUrl"];
 }
-<div class="row">
-    <div class="col-md-12">
 
-        <form asp-route-returnurl="@returnUrl" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
+<div class="container mt-5 bg-light py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-pink text-pink text-center">
+                    <h3>User Login</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-route-returnurl="@returnUrl" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Email"></label>
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
 
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
 
-            </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
+                        <div class="form-group form-check">
+                            <input asp-for="RememberMe" class="form-check-input" />
+                            <label asp-for="RememberMe" class="form-check-label">
+                                Remember Me
+                            </label>
+                        </div>
 
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label asp-for="RememberMe">
-                        <input asp-for="RememberMe" />
-
-                        @Html.DisplayNameFor(m => m.RememberMe)
-
-                    </label>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary w-50">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <small>Don't have an account? <a href="/Account/Register" class="text-primary">Register</a></small>
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-primary">Login</button>
-
-        </form>
+        </div>
     </div>
 </div>

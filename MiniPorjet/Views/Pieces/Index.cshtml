@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MiniPorjet.Models.Piece>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form class="d-flex" asp-action="Search" asp-controller="Pieces" method="get">
+    <input class="form-control me-sm-2" type="search" name="articleId" placeholder="Search" wfd-id="id2" />
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PieceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiecePrix)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantiteDispo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PieceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiecePrix)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantiteDispo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Article.ArticleID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PieceId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PieceId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PieceId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

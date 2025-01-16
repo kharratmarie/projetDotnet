@@ -1,0 +1,36 @@
+﻿@model MiniPorjet.Models.Client
+
+@{
+    ViewData["Title"] = "Create Client";
+}
+
+<h1>Create Client</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="ClientName" class="control-label"></label>
+        <input asp-for="ClientName" class="form-control" />
+        <span asp-validation-for="ClientName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ClientAdresse" class="control-label"></label>
+        <input asp-for="ClientAdresse" class="form-control" />
+        <span asp-validation-for="ClientAdresse" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ClientTelephone" class="control-label"></label>
+        <input asp-for="ClientTelephone" class="form-control" />
+        <span asp-validation-for="ClientTelephone" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MiniPorjet.Models.Reclamation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form class="d-flex" asp-action="Search" asp-controller="Reclamations" method="get">
+    <input class="form-control me-sm-2" type="search" name="articleId" placeholder="Search" wfd-id="id2" />
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReclamationDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReclamationStatut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReclamationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Piece)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReclamationDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReclamationStatut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReclamationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Article.ArticleID)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Piece.PieceId)
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ReclamationId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ReclamationId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ReclamationId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

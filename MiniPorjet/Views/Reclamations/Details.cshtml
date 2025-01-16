@@ -1,0 +1,55 @@
+﻿@model MiniPorjet.Models.Reclamation
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Reclamation</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReclamationDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReclamationDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReclamationStatut)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReclamationStatut)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReclamationDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReclamationDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Client.ClientId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Article)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Article.ArticleID)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Piece)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Piece.PieceId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ReclamationId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

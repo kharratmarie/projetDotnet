@@ -1,0 +1,9 @@
+# Ignorer les fichiers générés par Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+obj/
+bin/
+*.futdcache.v2

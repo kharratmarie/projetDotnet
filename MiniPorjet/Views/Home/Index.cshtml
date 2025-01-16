@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Page d'accueil";
+}
+
+<div class="container mt-5">
+    <!-- Section de bienvenue -->
+    <div class="text-center">
+        <h1 class="display-3 fw-bold text-primary mb-3">Bienvenue sur la plateforme SAV !</h1>
+        <p class="lead text-muted">Votre solution fiable pour gérer efficacement les services après-vente.</p>
+        <hr class="my-4">
+        <p class="text-secondary">Optimisez vos processus grâce à des outils dédiés à la gestion des réclamations, au suivi des pièces détachées et aux interactions clients.</p>
+        <a class="btn btn-primary btn-lg me-2" href="https://learn.microsoft.com/aspnet/core" target="_blank" role="button">
+            En savoir plus
+        </a>
+        <a class="btn btn-outline-secondary btn-lg" href="/Reclamations" role="button">
+            Commencer
+        </a>
+    </div>
+
+    <!-- Section des fonctionnalités -->
+    <div class="row mt-5">
+        <!-- Gestion des réclamations -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <img src="~/images/rec.png" class="card-img-top" alt="Réclamations">
+                <div class="card-body">
+                    <h5 class="card-title">Gérer les réclamations</h5>
+                    <p class="card-text text-muted">Enregistrez, suivez et résolvez facilement les réclamations des clients pour améliorer leur satisfaction.</p>
+                    <a href="/Reclamations" class="btn btn-primary">Accéder aux réclamations</a>
+                </div>
+            </div>
+        </div>
+        <!-- Gestion des pièces détachées -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <img src="~/images/pi.png" class="card-img-top" alt="Pièces détachées">
+                <div class="card-body">
+                    <h5 class="card-title">Gérer les pièces détachées</h5>
+                    <p class="card-text text-muted">Organisez et suivez efficacement votre inventaire de pièces détachées.</p>
+                    <a href="/Pieces" class="btn btn-primary">Accéder aux pièces</a>
+                </div>
+            </div>
+        </div>
+        <!-- Génération de rapports -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <img src="~/images/rapp.png" class="card-img-top" alt="Rapports">
+                <div class="card-body">
+                    <h5 class="card-title">Générer des rapports</h5>
+                    <p class="card-text text-muted">Analysez vos données et générez des rapports pour optimiser vos services.</p>
+                    <a href="/Rapports" class="btn btn-primary">Voir les rapports</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section de pied de page -->
+    <footer class="mt-5 text-center text-muted">
+        <p>&copy; 2025 Plateforme SAV | Développé par Kharrat Mariem et Aloulou Nihel avec <a href="https://learn.microsoft.com/aspnet/core" target="_blank">ASP.NET Core</a></p>
+    </footer>
+</div>

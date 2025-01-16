@@ -74,7 +74,7 @@ namespace MiniPorjet.Controllers
                     // Par défaut, assignez le rôle "Client"
                     await userManager.AddToRoleAsync(user, "Client");
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("Login", "Account");
                 }
 
                 // If there are any errors, add them to the ModelState object

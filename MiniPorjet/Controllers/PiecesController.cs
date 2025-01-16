@@ -173,9 +173,9 @@ try            {
         [AllowAnonymous]
 
         [HttpGet]
-        public ActionResult Search(int? articleId)
+        public ActionResult Search(string? articleName)
         {
-            if (articleId == null)
+            if (articleName == null)
             {
                 ViewBag.Message = "Veuillez entrer un article pour effectuer la recherche.";
                 return View("Index", new List<Piece>());
@@ -183,7 +183,7 @@ try            {
 
             var result = _context.Pieces
                 .Include(r => r.Article)
-                .Where(r => r.ArticleID == articleId)
+                .Where(r => r.Article.ArticleName == articleName)
                 .ToList();
 
             if (!result.Any())

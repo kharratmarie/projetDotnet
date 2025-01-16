@@ -214,6 +214,7 @@ namespace MiniPorjet.Controllers
                 }catch {
                 return View(reclamation); }
         }
+        [AllowAnonymous]
 
         // GET: Reclamations/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -234,6 +235,7 @@ namespace MiniPorjet.Controllers
 
             return View(reclamation);
         }
+        [AllowAnonymous]
 
         // POST: Reclamations/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -272,9 +274,9 @@ namespace MiniPorjet.Controllers
         [AllowAnonymous]
 
         [HttpGet]
-        public ActionResult Search(int? articleId)
+        public ActionResult Search(string? articleName)
         {
-            if (articleId == null)
+            if (articleName == null)
             {
                 ViewBag.Message = "Veuillez entrer un article pour effectuer la recherche.";
                 return View("Index", new List<Reclamation>());
@@ -284,7 +286,7 @@ namespace MiniPorjet.Controllers
                 .Include(r => r.Article)
                 .Include(r => r.Client)
                 .Include(r => r.Piece)
-                .Where(r => r.ArticleId == articleId)
+                .Where(r => r.Article.ArticleName == articleName)
                 .ToList();
 
             if (!result.Any())

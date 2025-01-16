@@ -104,8 +104,8 @@ namespace MiniPorjet.Controllers
                     intervention, tarifMainOeuvre, tauxTVA);
 
                 }
-                intervention.Statut = "fjk";
-                intervention.Description = "sdfjklm";
+                intervention.Statut = "planifié";
+                intervention.Description = "intervention de la reclamation du Radiateur pour la piece bouchon";
 
                 _context.Add(intervention);
                 await _context.SaveChangesAsync();
@@ -153,7 +153,7 @@ namespace MiniPorjet.Controllers
                 {
 
                     intervention.Statut = "terminé";
-                    intervention.Description = "sdfjklm";
+                    intervention.Description = "intervention de la reclamation du Radiateur pour la piece bouchon";
 
                     
                     _context.Update(intervention);

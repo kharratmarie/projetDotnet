@@ -36,9 +36,43 @@ namespace MiniPorjet.Controllers
         // GET: Reclamations
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Reclamations.Include(r => r.Article).Include(r => r.Client).Include(r => r.Piece);   // Assurez-vous que 'Piece' est chargé
 
-            return View(await applicationDbContext.ToListAsync());
+            var user = await userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                // Si l'utilisateur n'est pas connecté, rediriger ou afficher un message d'erreur
+                return Unauthorized("You must be logged in to view articles.");
+            }
+
+            List<Reclamation> Reclamation;
+
+            if (await userManager.IsInRoleAsync(user, "ResponsableSAV"))
+            {
+                // Si l'utilisateur est un ResponsableSAV, récupérer tous les articles
+                Reclamation = await _context.Reclamations.Include(r => r.Article).Include(r => r.Client).Include(r => r.Piece).ToListAsync();   // Assurez-vous que 'Piece' est chargé
+            }
+
+            else
+            {
+                // Trouver le client associé à l'utilisateur
+                var client = await _context.Clients
+                    .FirstOrDefaultAsync(c => c.ClientTelephone == user.PhoneNumber);
+
+                if (client == null)
+                {
+                    // Si aucun client n'est trouvé, retourner une erreur
+                    return NotFound("Client not found for the current user.");
+                }
+
+                // Récupérer les articles associés au client
+                Reclamation = await _context.Reclamations
+                    .Where(ca => ca.ClientId == client.ClientId).Include(r => r.Article).Include(r => r.Client).Include(r => r.Piece)
+                    .ToListAsync();
+            }
+
+
+
+            return View(Reclamation);
         }
 
         // GET: Reclamations/Details/5

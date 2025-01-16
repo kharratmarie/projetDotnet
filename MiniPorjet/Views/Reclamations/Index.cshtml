@@ -50,13 +50,13 @@
                 @Html.DisplayFor(modelItem => item.ReclamationDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Client.ClientId)
+                @Html.DisplayFor(modelItem => item.Client.ClientName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Article.ArticleID)
+                @Html.DisplayFor(modelItem => item.Article.ArticleName)
             </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Piece.PieceId)
+                    @Html.DisplayFor(modelItem => item.Piece.PieceName)
                 </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ReclamationId">Edit</a> |
